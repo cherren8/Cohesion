@@ -1,7 +1,9 @@
 # Cohesion
 Updates and maintenance of the Cohesion method for quantifying connectivity in microbial communities. 
+
 This method can be cited as:
-Herren, C. M., and K. D. McMahon. 2017. Cohesion: a method for quantifying the connectivity of microbial communities. The ISME Journal 11:2426–2438.
+
+#### Herren, C. M., and K. D. McMahon. 2017. Cohesion: a method for quantifying the connectivity of microbial communities. The ISME Journal 11:2426–2438.
 
 # readme for Cohesion R Script:
 script maintainer: Cristina Herren, cristina.herren@gmail.com
