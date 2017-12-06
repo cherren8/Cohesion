@@ -4,7 +4,9 @@
 # User instructions: read in a sample table (in absolute or relative abundance) as object "b".
 # If using a custom correlation matrix, read in that matrix at the designated line.
 # Run the entire script, and the 4 vectors (2 of connectedness and 2 of cohesion) are generated for each sample at the end.
-# Parameters that can be adjusted include pers.cutoff (persistence cutoff for retaining taxa in analysis), iter (number of iterations for the null model), tax.shuffle (whether to use taxon shuffle or row shuffle randomization), and use.custom.cors (whether to use a pre-determined correlation matrix)
+# Parameters that can be adjusted include pers.cutoff (persistence cutoff for retaining taxa in analysis), 
+# iter (number of iterations for the null model), tax.shuffle (whether to use taxon shuffle or row shuffle randomization), 
+# and use.custom.cors (whether to use a pre-determined correlation matrix)
 
 ####################create necessary functions######################
 
@@ -44,7 +46,8 @@ iter <- 200
 ## Decide whether to use taxon/column shuffle (tax.shuffle = T) or row shuffle algorithm (tax.shuffle = F)
 tax.shuffle <- T
 ## Option to input your own correlation table
-# Note that your correlation table MUST have the same number of taxa as the abundance table. There should be no empty (all zero) taxon vectors in the abundance table. 
+# Note that your correlation table MUST have the same number of taxa as the abundance table. 
+# There should be no empty (all zero) taxon vectors in the abundance table. 
 # Even if you input your own correlation table, the persistence cutoff will be applied
 use.custom.cors <- F
 
@@ -64,14 +67,16 @@ if(use.custom.cors == T) {
 }
 
 
-# Suggested steps to re-format data. At the end of these steps, the data should be in a matrix "c" where there are no empty samples or blank taxon columns. 
+# Suggested steps to re-format data. At the end of these steps, the data should be in a matrix "c" where there are no
+# empty samples or blank taxon columns. 
 c <- as.matrix(b)
 c <- c[rowSums(c) > 0, colSums(c) > 0]
 
 # Optionally re-order dataset to be in chronological order. Change date format for your data. 
 #c <- c[order(as.Date(rownames(c), format = "%m/%d/%Y")), ]
 
-# Save total number of individuals in each sample in the original matrix. This will be 1 if data are in relative abundance, but not if matrix c is count data
+# Save total number of individuals in each sample in the original matrix. This will be 1 if data are in relative abundance, 
+# but not if matrix c is count data
 rowsums.orig <- rowSums(c)
 
 # Based on persistence cutoff, define a cutoff for the number of zeroes allowed in a taxon's distribution
