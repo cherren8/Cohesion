@@ -1,12 +1,12 @@
 # Cohesion
 Updates and maintenance of the Cohesion method for quantifying connectivity in microbial communities
 
-readme for Cohesion R Script:
+# readme for Cohesion R Script:
 script maintainer: Cristina Herren, cristina.herren@gmail.com
 
 While developing the cohesion analysis, we tested our workflow on many different datasets. These are some suggested best practices and diagnostics for using the cohesion metrics. 
 
-Suggestions for setting abundance and persistence thresholds:
+## Suggestions for setting abundance and persistence thresholds:
 
 •	The cohesion R script includes a parameter (pers.cutoff) to exclude taxa from the analysis if they are present in fewer than a specified proportion of samples. The purpose of this parameter is to exclude taxa for which reliable correlations cannot be calculated. As a guideline, taxa should be present in at least 5-10 samples to be included in the analysis. Thus, if your dataset has 50 samples, the pers.cutoff parameter might initially be set to 0.1, as to exclude taxa present in fewer than 5 samples.  
 
@@ -14,7 +14,7 @@ Suggestions for setting abundance and persistence thresholds:
 
 •	When using cohesion as a predictor variable in analyses, we found that analysis results were often qualitatively similar across a range of abundance and persistence thresholds (see sensitivity analysis SOM). Thus, we suggest trying various thresholds and selecting final parameter values within the range of values where results are stable. 
 
-Suggestions for correcting or importing the correlation matrix:
+## Suggestions for correcting or importing the correlation matrix:
 
 •	While creating the cohesion workflow, we tested dozens of null models for correcting correlations between taxa. We selected a final version based on what worked well for a variety of different datasets. However, we imagine that the default null models included in the script might not be ideal for every dataset, because microbial datasets vary in richness and evenness. You can test the influence of the null model on the cohesion metrics by importing the true (uncorrected) correlation matrix as a custom correlation matrix. This will bypass the null model and calculate connectedness on the uncorrected correlation matrix. 
 
@@ -22,7 +22,7 @@ Suggestions for correcting or importing the correlation matrix:
 
 •	If importing a custom correlation matrix, we urge users to consider the aim of the analysis used to generate the custom matrix. Correlation methods that are intended to determine significance may not yield appropriate correlation matrices. For example, in Local Similarity Analysis (LSA), LS scores do not equate to significance; a lower LS score can be more significant than a higher LS score. This is not a deficit of the Local Similarity method, because the aim of LSA is to identify significant pairwise correlations. However, the differing objectives of these two analyses (LSA and cohesion) mean that the matrix produced from LSA may not be an appropriate custom matrix.   
 
-Types of datasets appropriate for the cohesion metrics
+## Types of datasets appropriate for the cohesion metrics
 
 •	Time series datasets from a single location
 
@@ -36,9 +36,9 @@ Types of datasets appropriate for the cohesion metrics
 
 •	Experimental datasets (e.g. calculating cohesion metrics or the relationship between cohesion and a response variable in two or more experimental treatments)
 
-Types of datasets that may be problematic for the cohesion metrics
+## Types of datasets that may be problematic for the cohesion metrics
 
-•	Time series collected at high frequencies (such as a daily time scale). Additional measures may be necessary for these datasets. 
+•	Time series collected at high frequencies (such as a daily time scale). Additional measures may be necessary for these datasets. (This is a warning to proceed with caution, not a statement that it's certainly a problem.)
 
     o	 An implicit assumption of this analysis is that there is sufficient time between samples for populations to change enough in relative abundance such that the real population change can be distinguished from background/methodological noise in the data. This assumption may not be met at a daily sampling interval. 
     
@@ -47,7 +47,7 @@ Types of datasets that may be problematic for the cohesion metrics
 •	Datasets containing samples from different sites where most OTUs are not shared. 
     o	OTUs being present at one site but absent at others may generate spurious correlations between taxa. 
 
-Diagnostic tests when cohesion is used as a predictor in a regression
+## Diagnostic tests when cohesion is used as a predictor in a regression
 
 •	Test for autocorrelation in residuals. As a simple diagnostic, plot sequential residuals against one another. Test for significant correlation between sequential residuals. 
 
@@ -61,11 +61,11 @@ Diagnostic tests when cohesion is used as a predictor in a regression
 
 •	The most abundant taxon in microbial communities can comprise more than 10% of the entire community. To test how strongly the most abundant taxon contributes to cohesion values, manually set the connectedness values of the most abundant taxon to zero. Re-calculate cohesion, and re-run the analysis using these new cohesion metrics. 
 
-We suggest not rarefying datasets before calculating cohesion
+## We suggest not rarefying datasets before calculating cohesion
 
 •	We found that rarefying decreases the strength of pairwise correlations. We tested the effects of rarefying on pairwise correlations using a dataset of bacterial samples from bog lakes in northern Wisconsin (available at the Earth Microbiome Project, study ID 1288). This dataset contained replicate samples at many time points. We calculated correlations between the same OTU in replicated samples in the non-rarefied dataset and in a rarefied dataset. These correlations should be close to 1. We found that rarefying consistently decreased the magnitude of these strong correlations. We also found that rarefying increased the standard deviation of OTUs due to the stochasticity of rarefying. In the equation for Pearson correlations, the denominator is the product of the standard deviations of the two populations. Thus, correlations between taxa decrease because of the increase in the standard deviations of the OTUs without a compensating increase in the covariance of the two populations. 
 
-Miscellaneous
+## Miscellaneous
 
 •	The null models implemented in the cohesion R script are stochastic due to random sampling. To generate reproducible results, manually set a seed from a predetermined vector before each randomization. 
 
