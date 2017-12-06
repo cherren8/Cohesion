@@ -44,9 +44,9 @@ While developing the cohesion analysis, we tested our workflow on many different
 
 •	Time series collected at high frequencies (such as a daily time scale). Additional measures may be necessary for these datasets. (This is a warning to proceed with caution, not a statement that it's certainly a problem.)
 
-    o	 An implicit assumption of this analysis is that there is sufficient time between samples for populations to change enough in relative abundance such that the real population change can be distinguished from background/methodological noise in the data. This assumption may not be met at a daily sampling interval. 
+   *	An implicit assumption of this analysis is that there is sufficient time between samples for populations to change enough in relative abundance such that the real population change can be distinguished from background/methodological noise in the data. This assumption may not be met at a daily sampling interval. 
     
-    o	Another problem that may arise in time series at high frequency is autocorrelation. Autocorrelation may inflate correlations between taxa. One possible way to account for autocorrelation would be to calculate connectedness using the first differences of the dataset. Correlations on the first differences would indicate whether changes in two populations are synchronous.  
+   *	Another problem that may arise in time series at high frequency is autocorrelation. Autocorrelation may inflate correlations between taxa. One possible way to account for autocorrelation would be to calculate connectedness using the first differences of the dataset. Correlations on the first differences would indicate whether changes in two populations are synchronous.  
     
 •	Datasets containing samples from different sites where most OTUs are not shared. 
 OTUs being present at one site but absent at others may generate spurious correlations between taxa. 
