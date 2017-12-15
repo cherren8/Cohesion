@@ -179,11 +179,11 @@ if(tax.shuffle) {
 }
   
 # Save observed minus expected correlations. Use custom correlations if use.custom.cors = TRUE
-ifelse(use.custom.cors == T, {
-  obs.exp.cors.mat <- custom.cor.mat.sub}, {
+if(use.custom.cors == T) {
+  obs.exp.cors.mat <- custom.cor.mat.sub
+  } else {
     obs.exp.cors.mat <- cor.mat.true - med.tax.cors
   }
-)
   
 diag(obs.exp.cors.mat) <- 0
 
